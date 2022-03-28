@@ -16,7 +16,7 @@ public class Programa {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Caminho do arquivo: ");
+		System.out.print("Caminho do arquivo: ");
 		String caminho = sc.nextLine();
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(caminho))) {
@@ -30,9 +30,19 @@ public class Programa {
 				linha = br.readLine();
 			}
 			
+			double media = lista.stream()
+					.map(p -> p.getIdade())
+					.reduce(0, (x,y) -> x + y) / lista.size();
+			
+			System.out.println("Média de idade: " + String.format("%.2f", media) + " anos, um bando de velha");
+					
+					
+			
 		} catch (IOException e) {
 			System.out.println("Erro: " + e.getMessage());
 		}
+		
+		sc.close();
 		
 	}
 
